@@ -1,0 +1,249 @@
+﻿
+@{
+    ViewData["Title"] = "AdminPanel";
+}
+
+<br />
+<br />
+<div style="background-color: rgb(232, 232, 232); border-radius: 20px; padding: 20px">
+
+    <div>
+        <br>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="/images/logos/adminLogo.png">
+                </div>
+                <div class="col-md-12">
+                    <div id="appointmentsPanel" class="container-fluid" style="display: none">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Username</th>
+                                    <th scope="col">Time</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Comment</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="appointmentRequestTable">
+                            </tbody>
+                        </table>
+                        <hr />
+                        <br />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <br><br>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+
+        function rejectRequest(requestId) {
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "The request will be rejected",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: 'No',
+                confirmButtonText: 'Yes, reject it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: '@Heka.Startup.ApiUrl/api/Appointment/RejectRequest/'+requestId,
+                        type: 'POST',
+                        contentType: 'application/json',
+                        //dataType: "json",
+                        beforeSend: function(xhr) {
+                            xhr.setRequestHeader("Authorization", localStorage.getItem('token'));
+                        },
+                        success: function (res) {
+                            if (res.isDone === "False") {
+                                swal.fire({
+                                    timer: 3500,
+                                    showCancelButton: false,
+                                    showConfirmButton: false,
+                                    title: "Error",
+                                    text: res.message,
+                                    icon: 'error'
+                                });
+                            } else {
+                                swal.fire({
+                                    timer: 3000,
+                                    showCancelButton: false,
+                                    showConfirmButton: false,
+                                    title: "Done !",
+                                    text: res.message,
+                                    icon: 'success'
+                                }).then(function() {
+                                    window.location.reload();
+                                });
+                            }
+                        },
+                        error: function(err) {
+                            swal.fire({
+                                timer: 1000,
+                                showCancelButton: false,
+                                showConfirmButton: false,
+                                title: "Error",
+                                text: "Server did not response correctly",
+                                icon: 'error'
+                            });
+                        }
+                    });
+                }
+            })
+
+        }
+
+
+        function confirmRequest(requestId) {
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "The appointment will be confirmed",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: 'No',
+                confirmButtonText: 'Yes, Confirm !'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: '@Heka.Startup.ApiUrl/api/Appointment/ConfirmRequest/'+requestId,
+                        type: 'POST',
+                        contentType: 'application/json',
+                        //dataType: "json",
+                        beforeSend: function(xhr) {
+                            xhr.setRequestHeader("Authorization", localStorage.getItem('token'));
+                        },
+                        success: function (res) {
+                            if (res.isDone === "False") {
+                                swal.fire({
+                                    timer: 3500,
+                                    showCancelButton: false,
+                                    showConfirmButton: false,
+                                    title: "Error",
+                                    text: res.message,
+                                    icon: 'error'
+                                });
+                            } else {
+                                swal.fire({
+                                    timer: 3000,
+                                    showCancelButton: false,
+                                    showConfirmButton: false,
+                                    title: "Done !",
+                                    text: res.message,
+                                    icon: 'success'
+                                }).then(function() {
+                                    window.location.reload();
+                                });
+                            }
+                        },
+                        error: function(err) {
+                            swal.fire({
+                                timer: 1000,
+                                showCancelButton: false,
+                                showConfirmButton: false,
+                                title: "Error",
+                                text: "Server did not response correctly",
+                                icon: 'error'
+                            });
+                        }
+                    });
+                }
+            })
+
+        }
+
+
+        $(document).ready(function() {
+
+
+            $.ajax({
+                url: '@Heka.Startup.ApiUrl/api/Authentication/IsAdmin',
+                type: 'GET',
+                contentType: 'application/json',
+                //dataType: "json",
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("Authorization", localStorage.getItem('token'));
+                },
+                success: function(res) {
+                    if (res === false) {
+                location.replace('/');
+                        }
+                },
+                error: function(err) {
+                    swal.fire({
+                        timer: 1000,
+                        showCancelButton: false,
+                        showConfirmButton: false,
+                        title: "Error",
+                        text: "Server did not response correctly",
+                        icon: 'error'
+                    });
+                }
+            });
+
+            $.ajax({
+                url: '@Heka.Startup.ApiUrl/api/Appointment/GetAllAppointments',
+                type: 'GET',
+                contentType: 'application/json',
+                //dataType: "json",
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("Authorization", localStorage.getItem('token'));
+                },
+                success: function (res) {
+                    if (res === "No Appointments") {
+                        swal.fire({
+                            timer: 2000,
+                            showCancelButton: false,
+                            showConfirmButton: false,
+                            text: "No Appointments",
+                            icon: 'error'
+                        });
+                    } else {
+                        $("#appointmentsPanel").toggle(800);
+                        $("#appointmentRequestTable").html("");
+                        var status;
+                        $.each(res,
+                            function (i, item) {
+                                if (item.status === "inProgress") {
+                                    status = '<span class="badge badge-warning">In Progress</span>';
+                                }
+                                if (item.status === "confirmed") {
+                                    status = '<span class="badge badge-success">Confirmed</span>';
+                                }
+                                if (item.status === "rejected") {
+                                    status = '<span class="badge badge-danger">Rejected</span>';
+                                }
+                                $('#appointmentRequestTable').append('<tr><th scope="row">' + (i + 1) + '</th><td>' + item.username + '</td><td>' + item.time + '</td><td>' + item.date + '</td><td>' + item.comment + '</td><td>' + status + '</td><td><button class="btn btn-sm btn-outline-success" onclick="confirmRequest(' + item.appointmentId +')">Confirm</button><span> </span><button class="btn btn-sm btn-outline-danger" onclick="rejectRequest(' + item.appointmentId+')">Reject</button></td></tr>');
+                            });
+                    }
+                },
+                error: function(err) {
+                    swal.fire({
+                        timer: 1000,
+                        showCancelButton: false,
+                        showConfirmButton: false,
+                        title: "Error",
+                        text: "Server did not response correctly",
+                        icon: 'error'
+                    });
+                }
+            });
+        });
+
+    </script>
+}

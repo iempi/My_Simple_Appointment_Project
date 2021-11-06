@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heka.UI", "Heka\Heka.UI.csproj", "{0CC34C70-36B1-4836-AA9C-BE40238748A8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Heka.Appoinment", "Heka.Appoinment", "{BC26D827-CF06-44A2-B6A7-B6D7C2CCB282}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heka.Api", "Heka_Api\Heka.Api.csproj", "{432FD624-479C-45A7-8385-CF0C4DB3B3BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heka.DataAccess", "Heka.DataAccess\Heka.DataAccess.csproj", "{840650EA-7CDE-4FC2-BF08-A663D2EC7A86}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heka.Domain", "Heka.Domain\Heka.Domain.csproj", "{9030B6F9-AAD4-47B3-BD26-DB97C8549E60}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heka.Service", "Heka.Service\Heka.Service.csproj", "{43CA042E-6912-4C72-9D46-23547E2B8D8A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0CC34C70-36B1-4836-AA9C-BE40238748A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CC34C70-36B1-4836-AA9C-BE40238748A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CC34C70-36B1-4836-AA9C-BE40238748A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CC34C70-36B1-4836-AA9C-BE40238748A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{432FD624-479C-45A7-8385-CF0C4DB3B3BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{432FD624-479C-45A7-8385-CF0C4DB3B3BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{432FD624-479C-45A7-8385-CF0C4DB3B3BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{432FD624-479C-45A7-8385-CF0C4DB3B3BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{840650EA-7CDE-4FC2-BF08-A663D2EC7A86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{840650EA-7CDE-4FC2-BF08-A663D2EC7A86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{840650EA-7CDE-4FC2-BF08-A663D2EC7A86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{840650EA-7CDE-4FC2-BF08-A663D2EC7A86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9030B6F9-AAD4-47B3-BD26-DB97C8549E60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9030B6F9-AAD4-47B3-BD26-DB97C8549E60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9030B6F9-AAD4-47B3-BD26-DB97C8549E60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9030B6F9-AAD4-47B3-BD26-DB97C8549E60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43CA042E-6912-4C72-9D46-23547E2B8D8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43CA042E-6912-4C72-9D46-23547E2B8D8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43CA042E-6912-4C72-9D46-23547E2B8D8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43CA042E-6912-4C72-9D46-23547E2B8D8A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0CC34C70-36B1-4836-AA9C-BE40238748A8} = {BC26D827-CF06-44A2-B6A7-B6D7C2CCB282}
+		{432FD624-479C-45A7-8385-CF0C4DB3B3BE} = {BC26D827-CF06-44A2-B6A7-B6D7C2CCB282}
+		{840650EA-7CDE-4FC2-BF08-A663D2EC7A86} = {BC26D827-CF06-44A2-B6A7-B6D7C2CCB282}
+		{9030B6F9-AAD4-47B3-BD26-DB97C8549E60} = {BC26D827-CF06-44A2-B6A7-B6D7C2CCB282}
+		{43CA042E-6912-4C72-9D46-23547E2B8D8A} = {BC26D827-CF06-44A2-B6A7-B6D7C2CCB282}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4EB80C9E-BA67-422C-ABA7-4BB60F6E557E}
+	EndGlobalSection
+EndGlobal
